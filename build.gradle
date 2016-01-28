@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+mainClassName="co.poynt.samples.Main"
+
+jar{
+	manifest{
+		attributes 'Main-Class': 'co.poynt.samples.Main'
+	}
+}
+
+allprojects {
+  repositories {
+    mavenCentral()
+    maven {
+      url 'https://nexus.poynt.co/content/repositories/releases'
+    }
+    mavenCentral()
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Poynt SDK and Model Dependencies
+  compile 'co.poynt.api:android-api-model:1.2.32@jar'
+  compile 'co.poynt.android.sdk:poynt-sdk:1.2.8@aar'
+
+  // JWT dependencies - if you want to parse JWTs
+  compile 'net.jcip:jcip-annotations:1.0@jar'
+  compile 'com.nimbusds:nimbus-jose-jwt:2.26@jar'
+  compile 'net.minidev:json-smart:1.2@jar'
+
+  // Jackson dependencies
+  //compile 'org.codehaus.jackson:jackson-core-asl:1.9.9'
+  //compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.9'
+  compile 'com.fasterxml.jackson.core:jackson-core:2.6.1'
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.6.1'
+
+  // bouncycastle
+ compile 'org.bouncycastle:bcpkix-jdk15on:1.52'
+
+  // Amplitude Analytics
+  compile 'com.amplitude:android-sdk:1.7.0'
+  
+  compile 'com.google.code.gson:gson:2.2.4'
+  compile 'com.squareup.okhttp3:okhttp:3.0.0-RC1'
+
+}
